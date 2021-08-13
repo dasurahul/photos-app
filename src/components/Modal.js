@@ -46,4 +46,6 @@ const MyModal = styled.div`
   transform: translate(50%, -50%);
   z-index: 1;
   background-color: #fff;
+  width: 90%;
+  max-width: 500px;
 `;
