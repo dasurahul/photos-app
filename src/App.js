@@ -4,8 +4,6 @@ import Navbar from "./components/Navbar";
 import Photos from "./components/Photos";
 import { Route, useHistory } from "react-router-dom";
 import Search from "./pages/Search";
-import Fab from "@material-ui/core/Fab";
-import NavigationIcon from "@material-ui/icons/Navigation";
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -30,16 +28,6 @@ const App = () => {
       <Route path="/:query">
         <Search />
       </Route>
-      <Fab
-        variant="extended"
-        style={{ position: "fixed", bottom: "20px", right: "20px" }}
-        onClick={() => {
-          window.scrollTo(0, 0);
-        }}
-      >
-        <NavigationIcon />
-        Navigate
-      </Fab>
     </div>
   );
 };
