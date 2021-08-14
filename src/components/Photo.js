@@ -6,6 +6,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Modal from "react-bootstrap/Modal";
 import MyModal from "./Modal";
+import noScroll from "no-scroll";
 
 import styled from "styled-components";
 
@@ -19,6 +20,7 @@ const Photo = ({ item }) => {
     setOpen(false);
   };
   const close = () => {
+    noScroll.off();
     setModalIsOpen(false);
   };
   const userProfileImageUrl = item.user.profile_image.large;
@@ -92,7 +94,10 @@ const Photo = ({ item }) => {
               <FavoriteIcon style={{ color: "red" }} /> {likes}
             </div>
             <ShareIcon
-              onClick={() => setModalIsOpen(true)}
+              onClick={() => {
+                noScroll.on();
+                setModalIsOpen(true);
+              }}
               style={{ cursor: "pointer" }}
             />
           </div>
