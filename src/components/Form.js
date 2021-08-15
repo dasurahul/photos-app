@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Form = (props) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(() => {
+    if (props.value) {
+      return props.value;
+    } else {
+      return "";
+    }
+  });
   const [error, setError] = useState(false);
   const inputHandler = (event) => {
     setError(false);
