@@ -11,6 +11,7 @@ import disableScroll from "disable-scroll";
 import styled from "styled-components";
 
 const Photo = ({ item }) => {
+  console.log(item);
   const [open, setOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const openModal = () => {
@@ -62,7 +63,7 @@ const Photo = ({ item }) => {
               View Photo
             </ModalLink>
             <ModalLink
-              href={item.links.download}
+              href={item.user.links.html}
               target="_blank"
               rel="noreferrer"
             >
