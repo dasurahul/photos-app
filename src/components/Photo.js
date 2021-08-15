@@ -6,7 +6,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Modal from "react-bootstrap/Modal";
 import MyModal from "./Modal";
-import noScroll from "no-scroll";
+import disableScroll from "disable-scroll";
 
 import styled from "styled-components";
 
@@ -20,7 +20,7 @@ const Photo = ({ item }) => {
     setOpen(false);
   };
   const close = () => {
-    noScroll.off();
+    disableScroll.off();
     setModalIsOpen(false);
   };
   const userProfileImageUrl = item.user.profile_image.large;
@@ -95,7 +95,7 @@ const Photo = ({ item }) => {
             </div>
             <ShareIcon
               onClick={() => {
-                noScroll.on();
+                disableScroll.on();
                 setModalIsOpen(true);
               }}
               style={{ cursor: "pointer" }}
