@@ -15,7 +15,7 @@ const style = {
 const Modal = (props) => {
   return (
     <div>
-      <Overlay onClick={() => props.closeModal()}></Overlay>
+      <Backdrop onClick={() => props.closeModal()}></Backdrop>
       <MyModal>
         <ShareSocial
           style={style}
@@ -29,7 +29,7 @@ const Modal = (props) => {
 
 export default Modal;
 
-const Overlay = styled.div`
+const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
