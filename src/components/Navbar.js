@@ -1,11 +1,14 @@
 import React from "react";
 
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Navbar = () => {
+  const history = useHistory();
+
   return (
     <Container>
-      <h1>Photos App</h1>
+      <Logo onClick={() => history.push("/")}>Photos App</Logo>
     </Container>
   );
 };
@@ -18,4 +21,8 @@ const Container = styled.div`
   color: #222;
   box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
+`;
+
+const Logo = styled.h1`
+  cursor: pointer;
 `;
