@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Form from "../components/Form";
 import { useParams, useHistory } from "react-router-dom";
@@ -7,11 +7,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const Search = () => {
   const { query } = useParams();
-  const total = useRef();
-  const totalPages = useRef();
   const [currentPage, setCurrentPage] = useState(1);
-  useEffect(() => {
+  const history = useHistory();
+  const [items, setItems] = useState([]);
+  const submitHandler = (input) => {
+    history.push(`/${input}`);
     setCurrentPage(1);
+  };
+  useEffect(() => {
     setItems([]);
   }, [query]);
   useEffect(() => {
@@ -20,16 +23,9 @@ const Search = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        total.current = data.total;
-        totalPages.current = data.total_pages;
         setItems((prevData) => [...prevData, ...data.results]);
       });
   }, [query, currentPage]);
-  const history = useHistory();
-  const [items, setItems] = useState([]);
-  const submitHandler = (input) => {
-    history.push(`/${input}`);
-  };
   return (
     <div>
       <Navbar />
