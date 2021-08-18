@@ -11,7 +11,6 @@ import disableScroll from "disable-scroll";
 import styled from "styled-components";
 
 const Photo = ({ item }) => {
-  console.log(item);
   const [open, setOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const openModal = () => {
