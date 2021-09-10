@@ -7,12 +7,15 @@ import "react-medium-image-zoom/dist/styles.css";
 import Modal from "react-bootstrap/Modal";
 import MyModal from "./Modal";
 import disableScroll from "disable-scroll";
+import ThemeContext from "../store/theme-context";
 
 import styled from "styled-components";
 
 const Photo = ({ item }) => {
   const [open, setOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const themeContext = React.useContext(ThemeContext);
+  const darkTheme = themeContext.darkTheme;
   const openModal = () => {
     setOpen(true);
   };
@@ -50,7 +53,7 @@ const Photo = ({ item }) => {
       });
   };
   return (
-    <>
+    <Container darkTheme={darkTheme}>
       {open && (
         <Modal show={open} centered animation>
           <Modal.Body>
@@ -75,7 +78,7 @@ const Photo = ({ item }) => {
           </Modal.Body>
         </Modal>
       )}
-      <PhotoContainer>
+      <PhotoContainer darkTheme={darkTheme}>
         <div style={{ display: "flex", alignItems: "center", padding: "20px" }}>
           <ProfileImage src={userProfileImageUrl} alt="user profile image" />
           <div style={{ fontWeight: "bold" }}>{name}</div>
@@ -104,11 +107,16 @@ const Photo = ({ item }) => {
         </div>
       </PhotoContainer>
       {modalIsOpen && <MyModal url={photoUrl} closeModal={close} />}
-    </>
+    </Container>
   );
 };
 
 export default Photo;
+
+const Container = styled.div`
+  background-color: ${(props) => (props.darkTheme ? "#111" : "white")};
+  color: ${(props) => (props.darkTheme ? "white" : "#111")};
+`;
 
 const PhotoContainer = styled.div`
   max-width: 600px;
@@ -120,6 +128,8 @@ const PhotoContainer = styled.div`
   &:hover {
     box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
   }
+  background-color: ${(props) => (props.darkTheme ? "#333" : "white")};
+  color: ${(props) => (props.darkTheme ? "white" : "#111")};
 `;
 
 const ProfileImage = styled.img`

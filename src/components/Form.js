@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ThemeContext from "../store/theme-context";
 
 import styled from "styled-components";
 
@@ -11,6 +12,8 @@ const Form = (props) => {
     }
   });
   const [error, setError] = useState(false);
+  const themeContext = React.useContext(ThemeContext);
+  const darkTheme = themeContext.darkTheme;
   const inputHandler = (event) => {
     setError(false);
     setInput(event.target.value);
@@ -24,17 +27,18 @@ const Form = (props) => {
     props.onSubmit(input);
   };
   return (
-    <Container>
-      <form onSubmit={submitHandler}>
-        <input
+    <Container darkTheme={darkTheme}>
+      <MyForm onSubmit={submitHandler}>
+        <Input
           type="text"
           className={`form-control ${error && "is-invalid"}`}
           placeholder="Search..."
           onChange={inputHandler}
           value={input}
           onBlur={() => setError(false)}
+          darkTheme={darkTheme}
         />
-      </form>
+      </MyForm>
     </Container>
   );
 };
@@ -42,7 +46,22 @@ const Form = (props) => {
 export default Form;
 
 const Container = styled.div`
+  margin: 0 auto;
+  background-color: ${(props) => (props.darkTheme ? "#111" : "white")};
+  color: ${(props) => (props.darkTheme ? "white" : "#111")};
+`;
+
+const MyForm = styled.form`
   max-width: 600px;
   margin: 0 auto;
-  margin-bottom: 40px;
+  padding: 30px 0;
+`;
+
+const Input = styled.input`
+  background-color: ${(props) => (props.darkTheme ? "#111" : "white")};
+  color: ${(props) => (props.darkTheme ? "white" : "#111")};
+  &:focus {
+    background-color: ${(props) => (props.darkTheme ? "#111" : "white")};
+    color: ${(props) => (props.darkTheme ? "white" : "#111")};
+  }
 `;
